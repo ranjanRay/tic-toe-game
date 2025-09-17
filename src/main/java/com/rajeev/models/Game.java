@@ -1,6 +1,9 @@
 package com.rajeev.models;
 
-import com.rajeev.strategies.RowWinningStrategy;
+import com.rajeev.exceptions.InvalidMoveException;
+import com.rajeev.exceptions.InvalidPlayerException;
+import com.rajeev.exceptions.SymbolException;
+import com.rajeev.exceptions.TooManyBotsException;
 import com.rajeev.strategies.Undoable;
 import com.rajeev.strategies.WinningStrategy;
 
@@ -128,14 +131,14 @@ public class Game {
         return false;
     }
 
-    public void makeMove() {
+    public void makeMove() throws InvalidMoveException {
         // 1. Validate move.
 
         Player currentPlayer = players.get(nextPlayerIndex);
         System.out.println("It's "+ currentPlayer.getName() + "'s move.");
         Move move = currentPlayer.getMove(board);
         if(!validateMove(move)) {
-            throw new RuntimeException("Invalid move");
+            throw new InvalidMoveException("Invalid move");
         }
 
         // 2. Update cell with the current move.
@@ -210,18 +213,18 @@ public class Game {
             for(Player player : players) {
                 if(player.getPlayerType() == PlayerType.BOT) { bots++; }
                 if(bots > 1) {
-                    throw new RuntimeException("Too many bots.");
+                    throw new TooManyBotsException("Too many bots.");
                 }
             }
 
             if(players.size() != dimension) {
-                throw new RuntimeException("Invalid players count.");
+                throw new InvalidPlayerException("Invalid players count.");
             }
 
             Set<Symbol> uniqueSymbols = new HashSet<>();
             for(Player player : players) {
                 if(uniqueSymbols.contains(player.getSymbol())) {
-                    throw new RuntimeException("Duplicate symbol.");
+                    throw new SymbolException("Duplicate symbol.");
                 }
                 uniqueSymbols.add(player.getSymbol());
             }
