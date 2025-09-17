@@ -12,13 +12,13 @@ import java.util.Scanner;
 public class Client {
     private static Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        System.out.println("Hello world! Welcome to the Tic Tac Toe world!");
         // GameController should be a single object which should be independent of Games.
         GameController gameController = new GameController();
         List<Player> players = new ArrayList<>();
         players.add(new HumanPlayer(0, "Rajeev", new Symbol('X', "Green"), PlayerType.HUMAN));
         players.add(new HumanPlayer(1, "Alex", new Symbol('0', "Red"), PlayerType.HUMAN));
-        players.add(new BotPlayer(2, "Bot-1", new Symbol('Y', "Orange"), PlayerType.BOT, BotDifficultyLevel.EASY));
+        players.add(new BotPlayer(2, "BotMan", new Symbol('Y', "Orange"), PlayerType.BOT, BotDifficultyLevel.EASY));
 
         List<WinningStrategy> winningStrategies = new ArrayList<>();
         winningStrategies.add(new RowWinningStrategy());

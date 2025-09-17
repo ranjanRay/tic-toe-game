@@ -2,7 +2,6 @@ package com.rajeev.controllers;
 
 import com.rajeev.models.Game;
 import com.rajeev.models.GameState;
-import com.rajeev.models.Move;
 import com.rajeev.models.Player;
 import com.rajeev.strategies.WinningStrategy;
 
@@ -32,7 +31,6 @@ public class GameController {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-
     }
 
     public GameState checkState(Game game) {
