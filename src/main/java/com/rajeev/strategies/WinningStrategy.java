@@ -5,5 +5,4 @@ import com.rajeev.models.Move;
 
 public interface WinningStrategy {
     boolean checkWinner(Board board, Move move);
-//    public void undoMoveSideEffects(Move move);
 }
